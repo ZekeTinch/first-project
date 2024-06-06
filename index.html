@@ -1,15 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/style.css"/>
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.x/dist/css/bootstrap.min.css" />
 
+</head>
+
+<body>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        data-bs-whatever="@mdo">Find item</button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Item</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <li class="list-group-item">
+                            <select id="project-type-input" class="form-select">
+                                <option value="Project Type" disabled selected>
+                                    Project Type
+                                </option>
+                                <option value="Web Application (Front End)">
+                                    Web Application (Front End)
+                                </option>
+                                <option value="Web Application (Back End)">
+                                    Web Application (Back End)
+                                </option>
+                                <option value="Web Application (Full Stack)">
+                                    Web Application (Full Stack)
+                                </option>
+                                <option value="Mobile Application">
+                                    Mobile Application
+                                </option>
+                                <option value="Print Campaign">Print Campaign</option>
+                                <option value="Digital Marketing Campaign">
+                                    Digital Marketing Campaign
+                                </option>
+                            </select>
+                        </li>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
