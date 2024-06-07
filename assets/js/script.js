@@ -2,10 +2,10 @@
 const settings = {
 	async: true,
 	crossDomain: true,
-	url: 'https://currency-converter-pro1.p.rapidapi.com/latest-rates?base=USD',
+	url: 'https://currency-converter-pro1.p.rapidapi.com/convert?from=USD&to=EUR&amount=100',
 	method: 'GET',
 	headers: {
-		'x-rapidapi-key': '122586d94dmsh85bd15fe85ef9a2p1e537bjsn37d5cb377140',
+		'x-rapidapi-key': '02a59a6bd3msh8b98276d625fb31p16f63djsn357e4e8b34f3',
 		'x-rapidapi-host': 'currency-converter-pro1.p.rapidapi.com'
 	}
 };
@@ -13,4 +13,3 @@ const settings = {
 $.ajax(settings).done(function (response) {
 	console.log(response);
 });
-
