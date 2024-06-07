@@ -29,3 +29,21 @@ $.ajax(settings2).done(function (response) {
 $.ajax(settings).done(function (response) {
 	console.log(response);
 });
+
+
+function HandleSubmit(event) {
+    event.preventDefault();
+    const formList = JSON.parse(localStorage.getItem('itemCurrency')) || [];
+
+    const itemAndCurrency = {
+        item: $('#recipient-name').val(),
+        currency: $('#project-type-input').val()
+    }
+
+    formList.push(itemAndCurrency);
+    localStorage.setItem('itemCurrency', JSON.stringify(formList))
+}
+
+$(document).ready(function () {
+    $('#submit').on('click', HandleSubmit);
+});
