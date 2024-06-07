@@ -10,9 +10,15 @@
 
 </head>
 
-<body>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+<body class="bg-secondary">
+    <header class="p-4 mb-4 text-center border-bottom border-5 border-primary bg-dark text-light">
+        <h1 class="display-2">Ebay Currency Converter</h1>
+        <p class="lead">Need to know what an item will cost in another country while on a trip? Have we got an app for you.</p>
+    </header>"
+    <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-primary btn-lg mx-center" data-bs-toggle="modal" data-bs-target="#exampleModal"
         data-bs-whatever="@mdo">Find item</button>
+    </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -56,6 +62,34 @@
                     <button type="button" class="btn btn-primary">submit</button>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row bg-secondary">
+        <div class="col-4 text-center bg-secondary">Div 1
+            <ul class="list-group">
+                <li class="list-group-item bg-dark" >
+                    <button class="btn btn-primary active" aria-current="true">list-group-item</button>
+                </li>
+                <li class="list-group-item bg-dark">
+                    <button class="btn btn-secondary">list-group-item</button>
+                </li>
+                <li class="list-group-item bg-dark">
+                    <button class="btn btn-secondary">list-group-item</button>
+                </li>
+                <li class="list-group-item bg-dark">
+                    <button class="btn btn-secondary">list-group-item</button>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="col-8 text-center text-light bg-dark">Div 2
+            <ul class="">
+                <li class="border">potatoes</li>
+                <li class="border">potatoes</li>
+                <li class="border">potatoes</li>
+                <li class="border">potatoes</li>
+                
+            </ul>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
