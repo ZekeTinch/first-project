@@ -4,28 +4,6 @@ const listGroup = $('.list-group');
 
 
 
-// function getCurrency(type){
-// 	const apiUrl = `https://currency-converter-pro1.p.rapidapi.com/convert?from=USD&to=${itemAndCurrency.currency}&amount=${100}appid=${apiKey1}`
-// 	fetch(apiUrl).then(function(response){
-// 		return response.json()
-// 	}).then(function(data){
-// 		const item = data[0].item;
-//         const price = data[0].currency;
-//         getCurrency()
-// 	})
-// }
-
-// function getItem(item){
-//     const apiUrl =  `https://ebay32.p.rapidapi.com/search/${itemCurrency.item}?page=1&country=germany&country_code=de&appid=${apiKey2}`
-//     fetch(apiUrl).then(function(response){
-//         return response.json()
-//     }).then(function(data){
-//         console.log(data)
-//     })
-// }
-
-
-
 
 
 function HandleSubmit(event) {
