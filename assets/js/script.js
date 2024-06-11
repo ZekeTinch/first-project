@@ -33,8 +33,8 @@ function HandleSubmit(event) {
     const formList = JSON.parse(localStorage.getItem('itemCurrency')) || [];
 
     const itemAndCurrency = {
-        item: $('#recipient-name').val(),
-        currency: $('#project-type-input').val()
+        item: $('#item-name').val(),
+        currency: $('#currency-type-input').val()
     }
 
 	// Get products
@@ -86,12 +86,38 @@ function getItemEbay(item) {
     
     $.ajax(settings).done(function (response) {
         console.log(response);
-        const price = response.products[0].price;
-        const price2 = response.products[1].price;
-        const price3 = response.products[2].price;
-        const price4 = response.products[3].price;
+        const currency = $('#currency-type-input').val();
+        const price = response.products[0].price.value;
+        // console.log(price);
+        getItemCurrency(price, currency);
+        // const price2 = response.products[1].price.value;
+        // const price3 = response.products[2].price.value;
+        // const price4 = response.products[3].price.value;
+        // for(let i = 0; i < 4; i++) {
+        //     const price = response.products[i].price
+        //     getItemCurrency(price, currency);
+        // }
     });
 }
+
+function getItemCurrency(price, currency) {
+    const settings = {
+        async: true,
+        crossDomain: true,
+        url: `https://currency-converter-pro1.p.rapidapi.com/convert?from=USD&to=${currency}&amount=${price}`,
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': '122586d94dmsh85bd15fe85ef9a2p1e537bjsn37d5cb377140',
+            'x-rapidapi-host': 'currency-converter-pro1.p.rapidapi.com'
+        }
+    };
+    
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        console.log(response.result);
+    });
+}
+// getItemCurrency('100', 'EUR');
 // getItemEbay('iphone');
 
 function removeSearchList(){
