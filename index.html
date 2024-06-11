@@ -16,14 +16,15 @@
         <p class="lead">Need to know what an item will cost in another country while on a trip? Have we got an app for you.</p>
     </header>"
     <div class="d-flex justify-content-center">
-        <button type="button" class="btn btn-primary btn-lg mx-center" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        <button type="button" class="btn btn-primary btn-lg mx-center m-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
         data-bs-whatever="@mdo">Find item</button>
+        
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Search for a product</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -35,7 +36,7 @@
                         <li class="list-group-item">
                             <select id="project-type-input" class="form-select">
                                 <option value="Project Type" disabled selected>
-                                    currency Type
+                                    Currency Type
                                 </option>
                                 <option value="EUR">
                                     Euro
@@ -64,22 +65,9 @@
         </div>
     </div>
     <div class="row bg-secondary">
-        <div class="col-4 text-center bg-secondary">Div 1
-            <ul class="list-group">
-                <li class="list-group-item bg-dark" >
-                    <button class="btn btn-primary active" aria-current="true">list-group-item</button>
-                </li>
-                <li class="list-group-item bg-dark">
-                    <button class="btn btn-secondary">list-group-item</button>
-                </li>
-                <li class="list-group-item bg-dark">
-                    <button class="btn btn-secondary">list-group-item</button>
-                </li>
-                <li class="list-group-item bg-dark">
-                    <button class="btn btn-secondary">list-group-item</button>
-                </li>
-                
-            </ul>
+        <div class="col-4 text-center bg-secondary h1">Search List
+            <button class="btn btn-danger btn-lg mx-center m-1" type="button" id="removeItems">Remove Items</button>
+            <div class="list-group"></div>
         </div>
         <div class="col-8 text-center text-light bg-dark">Div 2
             <ul class="">
