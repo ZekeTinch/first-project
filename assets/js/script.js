@@ -1,16 +1,16 @@
 // Currency Converter API test
-const settings = {
-	async: true,
-	crossDomain: true,
-	url: `https://currency-converter-pro1.p.rapidapi.com/convert?from=USD&to=${itemAndCurrency.currency}&amount=${100}`,
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': '02a59a6bd3msh8b98276d625fb31p16f63djsn357e4e8b34f3',
-		'x-rapidapi-host': 'currency-converter-pro1.p.rapidapi.com'
-	}
-};
+// const settings = {
+// 	async: true,
+// 	crossDomain: true,
+// 	url: `https://currency-converter-pro1.p.rapidapi.com/convert?from=USD&to=${itemAndCurrency.currency}&amount=${100}`,
+// 	method: 'GET',
+// 	headers: {
+// 		'x-rapidapi-key': '02a59a6bd3msh8b98276d625fb31p16f63djsn357e4e8b34f3',
+// 		'x-rapidapi-host': 'currency-converter-pro1.p.rapidapi.com'
+// 	}
+// };
 const apiKey = '02a59a6bd3msh8b98276d625fb31p16f63djsn357e4e8b34f3'
-
+const listGroup = $('.list-group');
 
 function getCurrency(type){
 	const apiUrl = `https://currency-converter-pro1.p.rapidapi.com/convert?from=USD&to=${itemAndCurrency.currency}&amount=${100}`
@@ -22,24 +22,24 @@ function getCurrency(type){
 }
 
 // EBay API test
-const settings2 = {
-    async: true,
-    crossDomain: true,
-    url: `https://ebay32.p.rapidapi.com/search/${itemCurrency.item}?page=1&country=germany&country_code=de`,
-    method: 'GET',
-    headers: {
-        'x-rapidapi-key': '122586d94dmsh85bd15fe85ef9a2p1e537bjsn37d5cb377140',
-        'x-rapidapi-host': 'ebay32.p.rapidapi.com'
-    }
-};
+// const settings2 = {
+//     async: true,
+//     crossDomain: true,
+//     url: `https://ebay32.p.rapidapi.com/search/${itemCurrency.item}?page=1&country=germany&country_code=de`,
+//     method: 'GET',
+//     headers: {
+//         'x-rapidapi-key': '122586d94dmsh85bd15fe85ef9a2p1e537bjsn37d5cb377140',
+//         'x-rapidapi-host': 'ebay32.p.rapidapi.com'
+//     }
+// };
 
-$.ajax(settings2).done(function (response) {
-    console.log(response);
-});
+// $.ajax(settings2).done(function (response) {
+//     console.log(response);
+// });
 
-$.ajax(settings).done(function (response) {
-	console.log(response);
-});
+// $.ajax(settings).done(function (response) {
+// 	console.log(response);
+// });
 
 
 function HandleSubmit(event) {
@@ -57,6 +57,29 @@ function HandleSubmit(event) {
 
     formList.push(itemAndCurrency);
     localStorage.setItem('itemCurrency', JSON.stringify(formList))
+    renderSearchList();
+}
+
+function renderSearchList() {
+    listGroup.empty();
+
+    let citySearches = JSON.parse(localStorage.getItem('cityName')) || [];
+
+    createSearchList();
+}
+
+// Shows the search history of the user
+function createSearchList() {
+    let formList = JSON.parse(localStorage.getItem('itemCurrency')) || [];
+    
+    for(i = 0; i < formList.length; i ++) {
+        const newSection = $('<button>');
+        newSection.addClass('btn mt-3 bg-dark text-white');
+        $('.list-group').append(newSection);
+        const textBox = $('<div>')
+        textBox.text(formList[i].item);
+        newSection.append(textBox);
+    }
 }
 
 $(document).ready(function () {
