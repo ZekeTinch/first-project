@@ -51,6 +51,10 @@ function HandleSubmit(event) {
         currency: $('#project-type-input').val()
     }
 
+	// Get products
+
+	// Then get currency info for each product
+
     formList.push(itemAndCurrency);
     localStorage.setItem('itemCurrency', JSON.stringify(formList))
 }
