@@ -77,6 +77,7 @@ function HandleSubmit(event) {
     formList.push(itemAndCurrency);
     localStorage.setItem('itemCurrency', JSON.stringify(formList))
     renderSearchList();
+    getItemEbay(itemAndCurrency.item)
 }
 
 function renderSearchList() {
@@ -101,6 +102,23 @@ function createSearchList() {
     }
 }
 
+function getItemEbay(item) {
+    const settings = {
+        async: true,
+        crossDomain: true,
+        url: `https://ebay32.p.rapidapi.com/search/${item}?page=1`,
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': '122586d94dmsh85bd15fe85ef9a2p1e537bjsn37d5cb377140',
+            'x-rapidapi-host': 'ebay32.p.rapidapi.com'
+        }
+    };
+    
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+}
+// getItemEbay('iphone');
 
 
 $(document).ready(function () {
