@@ -83,7 +83,7 @@ function HandleSubmit(event) {
 function renderSearchList() {
     listGroup.empty();
 
-    let citySearches = JSON.parse(localStorage.getItem('cityName')) || [];
+    let citySearches = JSON.parse(localStorage.getItem('itemCurrency')) || [];
 
     createSearchList();
 }
