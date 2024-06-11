@@ -53,7 +53,7 @@ function HandleSubmit(event) {
 function renderSearchList() {
     listGroup.empty();
 
-    let citySearches = JSON.parse(localStorage.getItem('cityName')) || [];
+    let citySearches = JSON.parse(localStorage.getItem('itemCurrency')) || [];
 
     createSearchList();
 }
@@ -86,6 +86,10 @@ function getItemEbay(item) {
     
     $.ajax(settings).done(function (response) {
         console.log(response);
+        const price = response.products[0].price;
+        const price2 = response.products[1].price;
+        const price3 = response.products[2].price;
+        const price4 = response.products[3].price;
     });
 }
 // getItemEbay('iphone');
