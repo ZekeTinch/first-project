@@ -90,9 +90,14 @@ function getItemEbay(item) {
 }
 // getItemEbay('iphone');
 
+function removeSearchList(){
+	$('.list-group').empty();
+	localStorage.clear('itemCurrency');
+}
 
 $(document).ready(function () {
     $('#submit').on('click', HandleSubmit);
+	$('#removeItems').on('click', removeSearchList);
     renderSearchList();
 });
 
