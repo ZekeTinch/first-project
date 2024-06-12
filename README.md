@@ -2,11 +2,13 @@
 Application Name: World change
 
 
-This application will be used to find an item on Ebay list and save the item to the local storage while converting the currency type from United States dollars into Euros, Canadian dollars, Australian dollars, Mexican pesos and yen.
+This application will be used to find an item on Ebay list and save the item to the local storage while converting the currency type from United States dollars into Euros, Canadian dollars, Australian dollars, Mexican pesos or yen.
 
 When you search an item and select a currency type it will automatically appear on the screen with a picture of the item a name and the USD amount converted to the selected type of currency.
 
 The styling of the website is designed to be dark so there are no issues with a bright screen as well as to be simple and easy to use.
+
+We used jquery to simplify our script code and we used bootstrap for our styling to keep from having to have a separate css file.
 
 Image of website:
 
