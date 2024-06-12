@@ -73,14 +73,17 @@ function getItemEbay(item) {
         // const price2 = response.products[1].price.value;
         // const price3 = response.products[2].price.value;
         // const price4 = response.products[3].price.value;
-        for(let i = 0; i < 4; i++) {
+        for(let i = 5; i < 9; i++) {
             const price = response.products[i].price.value
-            getItemCurrency(price, currency);
+            const itemPicture = response.products[i].thumbnail
+            const ebayLink = response.products[i].url
+            console.log(ebayLink);
+            getItemCurrency(price, currency, itemPicture, ebayLink);
         }
     });
 }
 
-function getItemCurrency(price, currency) {
+function getItemCurrency(price, currency, itemPicture, ebayLink) {
     const settings = {
         async: true,
         crossDomain: true,
@@ -99,26 +102,36 @@ function getItemCurrency(price, currency) {
         const oldCurrency = response.request.from;
         const newCurrency = response.request.to;
         const newValue = response.result;
-        createItemCards(newValue, oldPrice, oldCurrency, newCurrency, newValue);
+        createItemCards(newValue, oldPrice, itemPicture, newCurrency, newValue, ebayLink);
     });
 }
 
-function createItemCards(newValue, oldprice, oldCurrency, newCurrency, newValue) {
+function createItemCards(newValue, oldprice, itemPicture, newCurrency, newValue, ebayLink) {
 
     itemName = $('#item-name').val();
 
     const itemCard = $('<div>');
-    itemCard.addClass('card task-card my-3 col-md-6');
+    itemCard.addClass('card task-card my-3 col-md-6 text-white bg-secondary mb-3');
     const itemCardHeader = $('<div>').addClass('card-header h4').text(itemName);
     const itemCardBody = $('<div>').addClass('card-body');
     const itemCardText = $('<p>').addClass('card-text').text(`Price in USD: ${oldprice}`);
     const itemCardText2 = $('<p>').addClass('card-text').text(`Price in ${newCurrency}: ${newValue}`);
+    const itemCardPicture = $('<div>');
+    const itemLink = $('<button>').addClass('btn btn-dark mt-3').text('Link to Ebay');
+
+    itemCardPicture.html(`<img src='${itemPicture}' alt='Thumbnail of item on ebay' />`);
 
     itemCardBox.append(itemCard);
     itemCard.append(itemCardHeader);
     itemCard.append(itemCardBody);
     itemCardBody.append(itemCardText);
     itemCardBody.append(itemCardText2);
+    itemCardBody.append(itemCardPicture);
+    itemCardBody.append(itemLink);
+
+    itemLink.on('click', function() {
+        window.open(ebayLink);
+    });
 }
 
 function removeSearchList(){
