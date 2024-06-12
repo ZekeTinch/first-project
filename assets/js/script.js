@@ -52,9 +52,6 @@ function HandleSubmit(event) {
 
 function renderSearchList() {
     listGroup.empty();
-
-    let citySearches = JSON.parse(localStorage.getItem('itemCurrency')) || [];
-
     createSearchList();
 }
 
@@ -64,15 +61,28 @@ function createSearchList() {
 
     for(i = 0; i < formList.length; i ++) {
         const newSection = $('<button>');
-        newSection.addClass('btn mt-3 bg-dark text-white');
+        newSection.addClass('btn mt-3 bg-dark text-white border previous-search');
+        newSection.attr('data-currency', formList[i].currency)
         $('.list-group').append(newSection);
         const textBox = $('<div>')
         textBox.text(formList[i].item);
         newSection.append(textBox);
     }
+
+    $('.previous-search').on('click', function() {
+        console.log('search');
+        
+        const itemText = $(this).text();
+        const currency = $(this).attr('data-currency');
+
+        
+        console.log(itemText, currency);
+        getItemEbay(itemText, currency);
+    })
+
 }
 
-function getItemEbay(item) {
+function getItemEbay(item, currencyOverride) {
     const settings = {
         async: true,
         crossDomain: true,
@@ -86,17 +96,11 @@ function getItemEbay(item) {
     
     $.ajax(settings).done(function (response) {
         console.log(response);
-        const currency = $('#currency-type-input').val();
-        const price = response.products[0].price.value;
-        // console.log(price);
-        getItemCurrency(price, currency);
-        // const price2 = response.products[1].price.value;
-        // const price3 = response.products[2].price.value;
-        // const price4 = response.products[3].price.value;
-        // for(let i = 0; i < 4; i++) {
-        //     const price = response.products[i].price
-        //     getItemCurrency(price, currency);
-        // }
+        const currency = currencyOverride ?? $('#currency-type-input').val();
+        for(let i = 0; i < 4; i++) {
+            const price = response.products[i].price.value
+            getItemCurrency(price, currency);
+        }
     });
 }
 
