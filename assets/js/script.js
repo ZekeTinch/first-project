@@ -1,7 +1,7 @@
 const apiKey1 = '02a59a6bd3msh8b98276d625fb31p16f63djsn357e4e8b34f3'
 const apiKey2 = '122586d94dmsh85bd15fe85ef9a2p1e537bjsn37d5cb377140'
 const listGroup = $('.list-group');
-
+const itemCardBox = $('#item-card-box');
 
 
 
@@ -51,6 +51,8 @@ function createSearchList() {
 }
 
 function getItemEbay(item) {
+    itemCardBox.empty();
+
     const settings = {
         async: true,
         crossDomain: true,
@@ -65,16 +67,16 @@ function getItemEbay(item) {
     $.ajax(settings).done(function (response) {
         console.log(response);
         const currency = $('#currency-type-input').val();
-        const price = response.products[0].price.value;
+        // const price = response.products[0].price.value;
         // console.log(price);
-        getItemCurrency(price, currency);
+        // getItemCurrency(price, currency);
         // const price2 = response.products[1].price.value;
         // const price3 = response.products[2].price.value;
         // const price4 = response.products[3].price.value;
-        // for(let i = 0; i < 4; i++) {
-        //     const price = response.products[i].price
-        //     getItemCurrency(price, currency);
-        // }
+        for(let i = 0; i < 4; i++) {
+            const price = response.products[i].price.value
+            getItemCurrency(price, currency);
+        }
     });
 }
 
@@ -93,10 +95,31 @@ function getItemCurrency(price, currency) {
     $.ajax(settings).done(function (response) {
         console.log(response);
         console.log(response.result);
+        const oldPrice = response.request.amount;
+        const oldCurrency = response.request.from;
+        const newCurrency = response.request.to;
+        const newValue = response.result;
+        createItemCards(newValue, oldPrice, oldCurrency, newCurrency, newValue);
     });
 }
-// getItemCurrency('100', 'EUR');
-// getItemEbay('iphone');
+
+function createItemCards(newValue, oldprice, oldCurrency, newCurrency, newValue) {
+
+    itemName = $('#item-name').val();
+
+    const itemCard = $('<div>');
+    itemCard.addClass('card task-card my-3 col-md-6');
+    const itemCardHeader = $('<div>').addClass('card-header h4').text(itemName);
+    const itemCardBody = $('<div>').addClass('card-body');
+    const itemCardText = $('<p>').addClass('card-text').text(`Price in USD: ${oldprice}`);
+    const itemCardText2 = $('<p>').addClass('card-text').text(`Price in ${newCurrency}: ${newValue}`);
+
+    itemCardBox.append(itemCard);
+    itemCard.append(itemCardHeader);
+    itemCard.append(itemCardBody);
+    itemCardBody.append(itemCardText);
+    itemCardBody.append(itemCardText2);
+}
 
 function removeSearchList(){
 	$('.list-group').empty();
