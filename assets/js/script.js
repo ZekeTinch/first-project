@@ -1,29 +1,7 @@
 const apiKey1 = '02a59a6bd3msh8b98276d625fb31p16f63djsn357e4e8b34f3'
 const apiKey2 = '122586d94dmsh85bd15fe85ef9a2p1e537bjsn37d5cb377140'
 const listGroup = $('.list-group');
-
-
-
-function getCurrency(type){
-	const apiUrl = `https://currency-converter-pro1.p.rapidapi.com/convert?from=USD&to=${itemAndCurrency.currency}&amount=${100}appid=${apiKey1}`
-	fetch(apiUrl).then(function(response){
-		return response.json()
-	}).then(function(data){
-		const item = data[0].item;
-        const price = data[0].currency;
-        getCurrency()
-	})
-}
-
-function getItem(item){
-    const apiUrl =  `https://ebay32.p.rapidapi.com/search/${itemCurrency.item}?page=1&country=germany&country_code=de&appid=${apiKey2}`
-    fetch(apiUrl).then(function(response){
-        return response.json()
-    }).then(function(data){
-        console.log(data)
-    })
-}
-
+const itemCardBox = $('#item-card-box');
 
 
 
@@ -83,6 +61,8 @@ function createSearchList() {
 }
 
 function getItemEbay(item, currencyOverride) {
+    itemCardBox.empty();
+
     const settings = {
         async: true,
         crossDomain: true,
@@ -97,14 +77,18 @@ function getItemEbay(item, currencyOverride) {
     $.ajax(settings).done(function (response) {
         console.log(response);
         const currency = currencyOverride ?? $('#currency-type-input').val();
-        for(let i = 0; i < 4; i++) {
+
+        for(let i = 5; i < 9; i++) {
             const price = response.products[i].price.value
-            getItemCurrency(price, currency);
+            const itemPicture = response.products[i].thumbnail
+            const ebayLink = response.products[i].url
+            console.log(ebayLink);
+            getItemCurrency(price, currency, itemPicture, ebayLink);
         }
     });
 }
 
-function getItemCurrency(price, currency) {
+function getItemCurrency(price, currency, itemPicture, ebayLink) {
     const settings = {
         async: true,
         crossDomain: true,
@@ -119,10 +103,41 @@ function getItemCurrency(price, currency) {
     $.ajax(settings).done(function (response) {
         console.log(response);
         console.log(response.result);
+        const oldPrice = response.request.amount;
+        const oldCurrency = response.request.from;
+        const newCurrency = response.request.to;
+        const newValue = response.result;
+        createItemCards(newValue, oldPrice, itemPicture, newCurrency, newValue, ebayLink);
     });
 }
-// getItemCurrency('100', 'EUR');
-// getItemEbay('iphone');
+
+function createItemCards(newValue, oldprice, itemPicture, newCurrency, newValue, ebayLink) {
+
+    itemName = $('#item-name').val();
+
+    const itemCard = $('<div>');
+    itemCard.addClass('card task-card my-3 col-md-6 text-white bg-secondary mb-3');
+    const itemCardHeader = $('<div>').addClass('card-header h4').text(itemName);
+    const itemCardBody = $('<div>').addClass('card-body');
+    const itemCardText = $('<p>').addClass('card-text').text(`Price in USD: ${oldprice}`);
+    const itemCardText2 = $('<p>').addClass('card-text').text(`Price in ${newCurrency}: ${newValue}`);
+    const itemCardPicture = $('<div>');
+    const itemLink = $('<button>').addClass('btn btn-dark mt-3').text('Link to Ebay');
+
+    itemCardPicture.html(`<img src='${itemPicture}' alt='Thumbnail of item on ebay' />`);
+
+    itemCardBox.append(itemCard);
+    itemCard.append(itemCardHeader);
+    itemCard.append(itemCardBody);
+    itemCardBody.append(itemCardText);
+    itemCardBody.append(itemCardText2);
+    itemCardBody.append(itemCardPicture);
+    itemCardBody.append(itemLink);
+
+    itemLink.on('click', function() {
+        window.open(ebayLink);
+    });
+}
 
 function removeSearchList(){
 	$('.list-group').empty();
