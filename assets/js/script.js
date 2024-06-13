@@ -83,12 +83,12 @@ function getItemEbay(item, currencyOverride) {
             const itemPicture = response.products[i].thumbnail
             const ebayLink = response.products[i].url
             console.log(ebayLink);
-            getItemCurrency(price, currency, itemPicture, ebayLink);
+            getItemCurrency(item, price, currency, itemPicture, ebayLink);
         }
     });
 }
 
-function getItemCurrency(price, currency, itemPicture, ebayLink) {
+function getItemCurrency(item, price, currency, itemPicture, ebayLink) {
     const settings = {
         async: true,
         crossDomain: true,
@@ -107,17 +107,17 @@ function getItemCurrency(price, currency, itemPicture, ebayLink) {
         const oldCurrency = response.request.from;
         const newCurrency = response.request.to;
         const newValue = response.result;
-        createItemCards(newValue, oldPrice, itemPicture, newCurrency, newValue, ebayLink);
+        createItemCards(item, newValue, oldPrice, itemPicture, newCurrency, newValue, ebayLink);
     });
 }
 
-function createItemCards(newValue, oldprice, itemPicture, newCurrency, newValue, ebayLink) {
+function createItemCards(item, newValue, oldprice, itemPicture, newCurrency, newValue, ebayLink) {
 
     itemName = $('#item-name').val();
 
     const itemCard = $('<div>');
     itemCard.addClass('card task-card my-3 col-md-6 text-white bg-secondary mb-3');
-    const itemCardHeader = $('<div>').addClass('card-header h4').text(itemName);
+    const itemCardHeader = $('<div>').addClass('card-header h4').text(item);
     const itemCardBody = $('<div>').addClass('card-body');
     const itemCardText = $('<p>').addClass('card-text').text(`Price in USD: ${oldprice}`);
     const itemCardText2 = $('<p>').addClass('card-text').text(`Price in ${newCurrency}: ${newValue}`);
