@@ -1,5 +1,5 @@
 # first-project
-Application Name: World change
+Application Name: World Change
 
 
 This application will be used to find an item on Ebay list and save the item to the local storage while converting the currency type from United States dollars into Euros, Canadian dollars, Australian dollars, Mexican pesos or yen.
@@ -10,12 +10,16 @@ The styling of the website is designed to be dark so there are no issues with a 
 
 We used jquery to simplify our script code and we used bootstrap for our styling to keep from having to have a separate css file.
 
-Image of website:
+![Image of World Change Website](./assets/images/screenshot-world-change2.png)
 
-website url:
-github url:
+![Second Image of World Change Website](./assets/images/screenshot-world-change.png)
 
-Excalidraw url:https://excalidraw.com/#room=758c805324c4b8d89b3a,z_k1yVY6ADra1HVRPWaz4g
+[World Change Website Link](https://zeketinch.github.io/first-project/)
 
-Ebay api:https://rapidapi.com/felixeschmittfes/api/ebay32
-Currency converter api:https://rapidapi.com/Dezento/api/currency-converter-pro1 
+[Github Link](https://github.com/ZekeTinch/first-project)
+
+[Excalidraw URL](https://excalidraw.com/#room=758c805324c4b8d89b3a,z_k1yVY6ADra1HVRPWaz4g)
+
+[Ebay Api URL](https://rapidapi.com/felixeschmittfes/api/ebay32)
+
+[Currency Converter Api URL](https://rapidapi.com/Dezento/api/currency-converter-pro1)
