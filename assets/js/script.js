@@ -117,8 +117,8 @@ function createItemCards(item, newValue, oldprice, itemPicture, newCurrency, new
 
     const itemCard = $('<div>');
     itemCard.addClass('card task-card my-3 col-md-6 text-white bg-secondary mb-3');
-    const itemCardHeader = $('<div>').addClass('card-header h4').text(item);
-    const itemCardBody = $('<div>').addClass('card-body');
+    const itemCardHeader = $('<div>').addClass('card-header bg-dark h4').text(item);
+    const itemCardBody = $('<div>').addClass('card-body bg-black');
     const itemCardText = $('<p>').addClass('card-text').text(`Price in USD: ${oldprice}`);
     const itemCardText2 = $('<p>').addClass('card-text').text(`Price in ${newCurrency}: ${newValue}`);
     const itemCardPicture = $('<div>');
