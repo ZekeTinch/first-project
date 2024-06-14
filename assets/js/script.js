@@ -1,7 +1,10 @@
 const apiKey1 = '02a59a6bd3msh8b98276d625fb31p16f63djsn357e4e8b34f3'
 const apiKey2 = '122586d94dmsh85bd15fe85ef9a2p1e537bjsn37d5cb377140'
+const apiKey3 = 'dc1f6a315cmsh840b48315c1137ep14a547jsn52bc7d78ab12'
 const listGroup = $('.list-group');
 const itemCardBox = $('#item-card-box');
+const apiKeyArray = [apiKey1, apiKey2, apiKey3]
+const randomApi = Math.floor((Math.random() * apiKeyArray.length));
 
 
 
@@ -63,13 +66,16 @@ function createSearchList() {
 function getItemEbay(item, currencyOverride) {
     itemCardBox.empty();
 
+    console.log(randomApi);
+    console.log(apiKeyArray[randomApi]);
+
     const settings = {
         async: true,
         crossDomain: true,
         url: `https://ebay32.p.rapidapi.com/search/${item}?page=1`,
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '122586d94dmsh85bd15fe85ef9a2p1e537bjsn37d5cb377140',
+            'x-rapidapi-key': `${apiKeyArray[randomApi]}`,
             'x-rapidapi-host': 'ebay32.p.rapidapi.com'
         }
     };
@@ -95,7 +101,7 @@ function getItemCurrency(item, price, currency, itemPicture, ebayLink) {
         url: `https://currency-converter-pro1.p.rapidapi.com/convert?from=USD&to=${currency}&amount=${price}`,
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '122586d94dmsh85bd15fe85ef9a2p1e537bjsn37d5cb377140',
+            'x-rapidapi-key': `${apiKeyArray[randomApi]}`,
             'x-rapidapi-host': 'currency-converter-pro1.p.rapidapi.com'
         }
     };
